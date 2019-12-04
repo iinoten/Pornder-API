@@ -4,7 +4,11 @@ const PORT = process.env.PORT || 5000
 const PornHub = require('@bowwow/pornhub_api');
 
 express()
-  .use(express.static(path.join(__dirname, 'public')))
+  .use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next();
+  })
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
