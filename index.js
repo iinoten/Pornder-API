@@ -12,6 +12,8 @@ express()
       console.log(infos.videos[0].title)
       ppap = infos.videos[0].title;
       res.json(ppap);
-    });
+    }).catch(err=>{
+      res.json({err: err})
+    }) ;
   }) // 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
