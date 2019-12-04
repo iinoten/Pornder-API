@@ -10,7 +10,7 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .get('/g/', (req, res) => {
     const ph = new PornHub();
-    ph.search({search:'porn'}).then(infos=>{
+    ph.search({search:req.query.genre}).then(infos=>{
       console.log(infos.videos[0].title)
       var ppap = infos.videos[0].title;
       res.json(ppap);
