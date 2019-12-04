@@ -4,7 +4,6 @@ const PORT = process.env.PORT || 5000
 const PornHub = require('@bowwow/pornhub_api');
 
 
-
 express()
   .use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
@@ -15,20 +14,19 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/c/', (req, res) => {
-    function get_video_data(category){
-      const ph = new PornHub();
-        ph.search({category:category}).then(infos=>{
-          let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
-          var return_infos = {
-            title: random_video.title,
-            video_url: random_video.url,
-            thumb: random_video.thumb,
-            rating: Math.floor(random_video.rating),
-            views: random_video.views,
-          };
-          return return_infos;
-      })
-    }
-      res.json(get_video_data(req.query.category));
-    })
+    const ph = new PornHub();
+    ph.search({category:req.query.category}).then(infos=>{
+      let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
+      var return_infos = {
+        title: random_video.title,
+        video_url: random_video.url,
+        thumb: random_video.thumb,
+        rating: Math.floor(random_video.rating),
+        views: random_video.views,
+      };
+      res.json(return_infos);
+    }).catch(err=>{
+      res.json
+    }) ;
+  }) // 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
