@@ -9,9 +9,7 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .get('/g/', (req, res) => {
     ph.search({search:'porn'}).then(infos=>{
-      console.log(infos.videos[0].title)
-      ppap = infos.videos[0].title;
-      res.json(ppap);
+      res.json(infos);
     }).catch(err=>{
       res.json({err: err})
     }) ;
