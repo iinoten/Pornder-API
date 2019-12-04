@@ -8,10 +8,13 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/g/', (req, res) => {
+    res.json({hello: 'hello'})
+    /*
     ph.search({search:'porn'}).then(infos=>{
       res.json(infos);
     }).catch(err=>{
       res.json({err: err});
     })
+    */
   }) // 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
