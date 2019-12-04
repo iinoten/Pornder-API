@@ -11,7 +11,7 @@ express()
     ph.search({search:'porn'}).then(infos=>{
       res.json(infos);
     }).catch(err=>{
-      res.json({err: err})
-    }) ;
+      res.json({err: err});
+    })
   }) // 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
