@@ -18,9 +18,10 @@ express()
       let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
       var return_infos = {
         title: random_video.title,
-        url: random_video.url,
-        thumbnail: random_video.thumb,
-        rating: Math.floor(random_video.rating)
+        video_url: random_video.url,
+        thumb: random_video.thumb,
+        rating: Math.floor(random_video.rating),
+        views: random_video.views,
       };
       res.json(return_infos);
     }).catch(err=>{
