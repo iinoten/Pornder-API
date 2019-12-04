@@ -14,6 +14,7 @@ function get_video_data(category){
         rating: Math.floor(random_video.rating),
         views: random_video.views,
       };
+      return return_infos;
   })
 }
 
