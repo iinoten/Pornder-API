@@ -7,6 +7,11 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/g/', (req, res) => res.json({method: "こんにちは、getさん 送ってこられたのは" + req.query.msg })) // 追加
-  .post('/p/', (req, res) => res.json({method: "こんにちは、postさん"})) // 追加
+  .get('/g/', (req, res) => {
+    ph.search({search:'porn'}).then(infos=>{
+      console.log(infos.videos[0].title)
+      ppap = infos.videos[0].title;
+      res.json(ppap);
+    });
+  }) // 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
