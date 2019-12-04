@@ -3,7 +3,27 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const PornHub = require('@bowwow/pornhub_api');
 
+var get_porn_info  = () => {
+  return("VVVVVVVVV")
+  const ph = new PornHub();
+    ph.search({category:req.query.category}).then(infos=>{
+      let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
+      var return_infos = {
+        title: random_video.title,
+        video_url: random_video.url,
+        thumb: random_video.thumb,
+        rating: Math.floor(random_video.rating),
+        views: random_video.views,
+      };
+      console.log("videos_array.length")
+      videos_array.push(return_infos);
+      return("SAVE")
+    }).catch(err=>{
+      res.json
+    });
+}
 
+var porn_array = []; 
 express()
   .use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
@@ -14,21 +34,22 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/c/', (req, res) => {
-    let videos_array = []
+    var videos_array = []
     const ph = new PornHub();
-      ph.search({category:req.query.category}).then(infos=>{
-        let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
-        var return_infos = {
-          title: random_video.title,
-          video_url: random_video.url,
-          thumb: random_video.thumb,
-          rating: Math.floor(random_video.rating),
-          views: random_video.views,
-        };
-        videos_array.push(return_infos)
-      }).catch(err=>{
-        res.json
-      });
-    res.json({videos_array});
+    ph.search({category:req.query.category}).then(infos=>{
+      let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
+      var return_infos = {
+        title: random_video.title,
+        video_url: random_video.url,
+        thumb: random_video.thumb,
+        rating: Math.floor(random_video.rating),
+        views: random_video.views,
+      };
+      console.log(get_porn_info())
+      videos_array[return_infos];
+      res.json(return_infos)
+    }).catch(err=>{
+      res.json
+    });
   }) // 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
