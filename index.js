@@ -49,7 +49,7 @@ express()
       videos_array[return_infos];
       res.json(return_infos)
     }).catch(err=>{
-      res.json
+      res.json 
     });
   }) // 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
