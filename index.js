@@ -33,6 +33,18 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
+  .get('/test/', (req, res) => {
+    var videos_array = []
+    const ph = new PornHub();
+    ph.search({category:req.query.category}).then(infos=>{
+      let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
+      
+      let return_info = random_video
+      res.json(return_info)
+    }).catch(err=>{
+      res.json
+    });
+  }) // 追加
   .get('/c/', (req, res) => {
     var videos_array = []
     const ph = new PornHub();
@@ -49,7 +61,7 @@ express()
       videos_array[return_infos];
       res.json(return_infos)
     }).catch(err=>{
-      res.json 
+      res.json
     });
   }) // 追加
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
