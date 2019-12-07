@@ -59,11 +59,9 @@ express()
       for (let i = 0; i < random_video.categories.length; i++) {
         return_type.categories.push(random_video.categories[i].category)
       }
-      /*
       for (let i = 0; i < random_video.tags.length; i++) {
-        return_info.tags.push(random_video.tags[i].tag_name)
+        return_type.tags.push(random_video.tags[i].tag_name)
       }
-      */
       var return_infos = {
         title: random_video.title,
         video_url: random_video.url,
