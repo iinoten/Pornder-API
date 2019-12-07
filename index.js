@@ -56,12 +56,20 @@ express()
     const ph = new PornHub();
     ph.search({category:req.query.category}).then(infos=>{
       let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
+      let return_type = {categories: [], tags: []};
+      for (let i = 0; i < random_video.categories.length; i++) {
+        return_info.categories.push(random_video.categories[i].category)
+      }
+      for (let i = 0; i < random_video.tags.length; i++) {
+        return_info.tags.push(random_video.tags[i].tag_name)
+      }
       var return_infos = {
         title: random_video.title,
         video_url: random_video.url,
         thumb: random_video.thumb,
         rating: Math.floor(random_video.rating),
         views: random_video.views,
+        types: return_type
       };
       console.log(get_porn_info())
       videos_array[return_infos];
