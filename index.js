@@ -34,7 +34,6 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/test/', (req, res) => {
-    var videos_array = []
     const ph = new PornHub();
     ph.search({category:req.query.category}).then(infos=>{
       let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
@@ -58,7 +57,7 @@ express()
       let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
       let return_type = {categories: [], tags: []};
       for (let i = 0; i < random_video.categories.length; i++) {
-        return_info.categories.push(random_video.categories[i].category)
+        return_type.categories.push(random_video.categories[i].category)
       }
       /*
       for (let i = 0; i < random_video.tags.length; i++) {
@@ -73,8 +72,6 @@ express()
         views: random_video.views,
         types: return_type
       };
-      console.log(get_porn_info())
-      videos_array[return_infos];
       res.json(return_infos)
     }).catch(err=>{
       res.json
