@@ -39,7 +39,7 @@ express()
     ph.search({category:req.query.category}).then(infos=>{
       let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
       
-      let return_info = random_video.categories[0].values()
+      let return_info = random_video.categories[0].category
       res.json(return_info)
     }).catch(err=>{
       res.json
