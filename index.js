@@ -57,10 +57,10 @@ express()
     ph.search({category:req.query.category}).then(infos=>{
       let random_video = infos.videos[Math.floor(Math.random() * infos.videos.length)]
       let return_type = {categories: [], tags: []};
-      /*
       for (let i = 0; i < random_video.categories.length; i++) {
         return_info.categories.push(random_video.categories[i].category)
       }
+      /*
       for (let i = 0; i < random_video.tags.length; i++) {
         return_info.tags.push(random_video.tags[i].tag_name)
       }
